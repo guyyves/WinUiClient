@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Window
+    
+    x:Class="WinUiClient.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:WinUiClient"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:localData="using:WinUiClient.Data"
+    mc:Ignorable="d"
+    Closed="Window_Closed">
+
+    
+
+    <StackPanel>
+       <TextBlock Margin="8,8,8,4" Style="{ThemeResource BaseTextBlockStyle}">Filter by...</TextBlock>
+                    <TextBox x:Name="FilterByName" Width="150" Header="Name" Margin="8"
+	                 HorizontalAlignment="Left" TextChanged="OnFilterChanged"/>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="250"></RowDefinition>
+                <RowDefinition Height="250"></RowDefinition>
+            </Grid.RowDefinitions>
+            
+
+            <ListView x:Name="bewonerListView"
+                IsItemClickEnabled="True"
+                      ItemClick="bewonerList_ItemClick"
+                BorderThickness="1"
+                BorderBrush="{ThemeResource SystemControlForegroundBaseMediumLowBrush}"
+                Width="350"
+                Height="400"
+                HorizontalAlignment="Left">
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="localData:Bewoner" >
+                        <StackPanel>
+                            <TextBlock Style="{ThemeResource BaseTextBlockStyle}" Margin="0,5,0,5">
+                                <Run Text="{x:Bind Name}"></Run>
+                                <Run Text="{x:Bind Job}"></Run>
+                            </TextBlock>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+
+            </ListView>
+
+            
+        </Grid>
+        <Button Content="Show only software developers" Click="SortButton_Click"/>
+        <Button Content="UnSort everything" Click="UnSortButton_Click"/>
+        <Button Content="Other Page" Click="Button_Click"/>
+
+
+
+    </StackPanel>
+    
+</Window>
